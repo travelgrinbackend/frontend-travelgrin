@@ -6,7 +6,7 @@ El frontend no toca la base de datos directamente para mantener todo seguro y or
 
 ---
 
-## ⚙️ Lo que necesitás configurar (.env.local)
+## Lo que necesitás configurar (.env.local)
 
 Antes de arrancar, create un archivo llamado `.env.local` dentro de esta carpeta (`frontend/`) y pegale esto (completando con tus datos reales):
 
