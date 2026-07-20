@@ -490,12 +490,10 @@ export default async function BuscarPage({
       <main className="min-h-screen bg-white">
         <PlanProvider>
           <SearchNavigationProvider>
-          {/* Header full width */}
           <div id="home">
             <NavBar />
           </div>
 
-          {/* Barra de búsqueda (full width, como Figma) */}
           <div className="relative z-[180] bg-[#D8F3F0] py-4 shadow-sm shadow-[#0B2B30]/5">
             <div className="mx-auto max-w-6xl px-4">
               <SearchBar />
@@ -503,7 +501,7 @@ export default async function BuscarPage({
           </div>
 
           <div className="mx-auto max-w-6xl px-4 pb-12 pt-7">
-            {/* Título + breadcrumbs */}
+
             <HideOnScroll
               className="z-20 bg-white py-3 md:sticky md:top-[5rem]"
               mobileThresholdVh={0.45}
@@ -513,7 +511,7 @@ export default async function BuscarPage({
             </HideOnScroll>
 
             <div className="grid gap-7 md:grid-cols-[320px_1fr]">
-              {/* Desktop/Tablet: filtros visibles */}
+
               <ScrollAwareFiltersAside>
                 <Filters categories={publicCategories} filterGroups={filterGroups} />
               </ScrollAwareFiltersAside>
@@ -551,7 +549,6 @@ export default async function BuscarPage({
                   />
                 </div>
 
-                {/* These two cards are always shown below the results (Figma) */}
                 <ClientBottomCards emptyState={!visibleSortedItems.length && !visiblePrestacionesItems.length} />
 
                 {!hasPrestacionFilter && prestacionesPayload ? (
@@ -586,7 +583,7 @@ export default async function BuscarPage({
             </div>
           </div>
 
-          {/* Mobile: botón flotante + drawer */}
+
             <MobileFiltersDrawer categories={publicCategories} filterGroups={filterGroups} />
 
           </SearchNavigationProvider>

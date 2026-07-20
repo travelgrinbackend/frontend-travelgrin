@@ -588,7 +588,6 @@ export function PublicationCard({ item }: { item: Publication }) {
             </div>
 
             <div className="mt-1 flex items-center gap-2">
-              {/* ✅ Compartir con ícono (NO debe navegar) */}
               <button
                 type="button"
                 aria-label="Compartir"
@@ -602,7 +601,6 @@ export function PublicationCard({ item }: { item: Publication }) {
                 <Share2 className="h-4 w-4 text-black/50" />
               </button>
 
-              {/* ✅ Favorito / Mi plan (NO debe navegar) */}
               <button
                 type="button"
                 aria-label={isSaved ? "Quitar de Mi plan" : "Sumar a Mi plan"}
@@ -649,7 +647,6 @@ export function PublicationCard({ item }: { item: Publication }) {
               <p className="text-[15px] font-semibold text-[#0B8FA3]">{friendlyPrice}</p>
             </div>
 
-            {/* Botón visual (no necesario para navegar, pero lo dejamos) */}
             <span className={`inline-flex h-10 items-center rounded-lg px-4 text-sm font-semibold text-white shadow hover:opacity-95 ${isPrestacion ? "bg-[#2C7BE5]" : "bg-[#0B8FA3]"}`}>
               {item.primaryGroupKey === "prestacion" ? t("ver_prestacion") : t("ver_detalle")}
             </span>

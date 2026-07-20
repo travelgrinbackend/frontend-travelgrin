@@ -94,7 +94,6 @@ export default function Prestaciones() {
             );
           })}
 
-          {/* Botón desktop (como tu original) */}
           <button
             type="button"
             className="ml-auto hidden h-7 w-7 items-center justify-center rounded-full border border-[#B7D9DA] bg-white text-[#0B2B30] shadow-sm md:flex lg:flex"
@@ -104,7 +103,6 @@ export default function Prestaciones() {
           </button>
         </div>
 
-        {/* Flechita SOLO en mobile/tablet para indicar scroll */}
         <div className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 md:block lg:hidden">
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#B7D9DA] bg-white text-[#0B2B30] shadow-sm">
             ›
@@ -112,7 +110,6 @@ export default function Prestaciones() {
         </div>
       </div>
 
-      {/* CONTENIDO (se despliega abajo) + botón ver opciones */}
       <div className="mt-4 rounded-xl border border-[#B7D9DA] bg-white p-4 shadow-sm">
         <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#0B2B30]">
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-[#E6F7F9]">

@@ -742,9 +742,7 @@ export default async function PublicacionDetalle({ params, searchParams }: PageP
           </div>
 
         <div className="grid min-w-0 gap-6 lg:grid-cols-[1.6fr_1fr]">
-          {/* LEFT: Galería + contenido */}
           <section className="min-w-0">
-            {/* GALERÍA (como Figma) */}
             <div className="rounded-3xl border border-gray-200 bg-white p-4 md:p-5">
               <PublicationGallery images={imgs} title={item.title} />
             </div>
@@ -778,9 +776,7 @@ export default async function PublicacionDetalle({ params, searchParams }: PageP
               imageUrl={planImageUrl}
             />
 
-            {/* Card principal (texto) */}
             <div className="mt-5 rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_12px_40px_rgba(15,23,42,0.06)]">
-              {/* Meta */}
               <div className="mb-3 flex flex-wrap items-center gap-3 text-xs text-gray-500">
                 <span title={String(item.id)}>
                   <TranslatedText id="id_publicacion" />: {publicationCode}
@@ -832,12 +828,11 @@ export default async function PublicacionDetalle({ params, searchParams }: PageP
 
             </div>
 
-            {/* Prestaciones */}
             {prestacionesToAddChips.length ? (
               <PrestacionesToAdd chips={prestacionesToAddChips} currentPublicationId={String(item.id)} />
             ) : null}
 
-            {/* Otras oportunidades (desktop) */}
+
             {others.length ? (
               <div className="mt-8 hidden lg:block">
                 <OtherOpportunitiesCarousel items={others} />
@@ -845,7 +840,6 @@ export default async function PublicacionDetalle({ params, searchParams }: PageP
             ) : null}
           </section>
 
-          {/* RIGHT: Sidebar (mantengo tu lógica pero con look más figma) */}
           <aside className="min-w-0 space-y-3 lg:sticky lg:top-24 lg:self-start">
             <PublicationSidebarCard
               className="hidden lg:block"
