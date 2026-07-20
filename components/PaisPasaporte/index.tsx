@@ -34,12 +34,10 @@ export default function PaisPasaporte({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const isClient = useIsClient();
-  // Cargar países al montar el componente
   useEffect(() => {
     fetchCountries();
   }, []);
 
-  // Verificar localStorage cuando los países ya estén cargados
   useEffect(() => {
     if (countries.length > 0 && isClient) {
       const savedCountry = localStorage.getItem("travelgrin_country_selected");
@@ -55,20 +53,16 @@ export default function PaisPasaporte({
     }
   }, [countries, isClient]);
 
-  // Fetch países de la API gratuita
   const fetchCountries = async () => {
     try {
       const response = await fetch("/api/countries");
       const payload = await response.json().catch(() => ({}));
       const data = Array.isArray(payload?.items) ? payload.items : [];
-
-      // Mapear países con nombres en español
       const countriesWithSpanish = data.map((country: any) => ({
         ...country,
         spanishName: country.translations?.spa?.common || country.name.common,
       }));
 
-      // Ordenar países alfabéticamente por nombre en español
       const sortedCountries = countriesWithSpanish.sort((a, b) =>
         a.spanishName.localeCompare(b.spanishName)
       );
@@ -79,7 +73,7 @@ export default function PaisPasaporte({
     }
   };
 
-  // Filtrar países según búsqueda
+
   const filteredCountries = countries.filter(
     (country) =>
       country?.spanishName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -91,7 +85,6 @@ export default function PaisPasaporte({
     setIsDropdownOpen(false);
     setSearchTerm("");
 
-    // Guardar en localStorage
     if (isClient) {
       localStorage.setItem(
         "travelgrin_country_selected",
@@ -111,7 +104,6 @@ export default function PaisPasaporte({
 
   return (
     <div className="relative">
-      {/* Selector de país con estilo matching */}
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         className={`flex items-center justify-between px-4 ${isMobile ? "py-2" : "py-3"} border-2 border-white/30 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 text-white ${isMobile ? "w-[12rem] flex flex-row" : "w-full"}  md:min-w-[200px] h-[3.27rem]`}
@@ -148,10 +140,9 @@ export default function PaisPasaporte({
         />
       </button>
 
-      {/* Dropdown */}
+
       {isDropdownOpen && (
         <div className="z-99 absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl  max-h-72 overflow-hidden">
-          {/* Búsqueda */}
           <div className="p-3 border-b border-gray-200">
             <input
               type="text"
@@ -162,7 +153,6 @@ export default function PaisPasaporte({
             />
           </div>
 
-          {/* Lista de países */}
           <div className="max-h-48 overflow-y-auto ">
             {filteredCountries.filter((country) => country.spanishName !== "Afganistán" ).map((country) => (
               <button

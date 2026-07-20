@@ -4,8 +4,6 @@ import { Locale } from "@/app/lib/translations";
 import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import Image from "next/image";
-
-// Importar las banderas SVG que necesitas
 import ES from "country-flag-icons/react/3x2/ES";
 import US from "country-flag-icons/react/3x2/US";
 import PT from "country-flag-icons/react/3x2/PT";
@@ -25,7 +23,6 @@ export default function SelectCountry({
   const { locale, setLocale } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Función para obtener el componente de bandera
   const getFlagComponent = (code: string) => {
     const flagComponents = {
       es: ES,
@@ -85,10 +82,6 @@ export default function SelectCountry({
           src={isMobile ? "/icono-language-transparent.png" : "/icono-lenguaje.svg"}
         />
 
-        {/* <div className="flex items-center justify-center">
-          {!isWelcome && getFlagComponent(currentLanguage.code)}
-        </div> */}
-
         <div className={`${isWelcome ? "text-black" : "text-white"}`}>
           {isMobile && currentLanguage.code.toUpperCase()}
           {isWelcome && (
@@ -107,13 +100,12 @@ export default function SelectCountry({
 
       {isOpen && (
         <>
-          {/* Backdrop */}
+
           <div
             className="fixed inset-0 z-[110]"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Dropdown */}
           <div
             className={`absolute top-full mt-2 md:right-0 right-1 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-[130] ${
               isWelcome ? "w-[11rem]" : ""

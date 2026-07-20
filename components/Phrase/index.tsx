@@ -17,7 +17,6 @@ export default function Phrase() {
         {t("creemos_en_un")}
       </h1>
       <Image
-        // Mantener el logo contenido (en algunos browsers el intrinsic size + CSS podía agrandarlo)
         className="mb-8 h-auto w-full max-w-[260px] object-contain"
         src="/logo-phrase.png"
         alt="logo travel grin"

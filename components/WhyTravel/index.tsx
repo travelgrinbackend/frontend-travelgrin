@@ -108,7 +108,6 @@ export default function FeaturesCards() {
       </h1>
       <div className="px-4 pb-4 flex items-center justify-center">
         <div className="max-w-5xl w-full">
-          {/* Grid centrado para acomodar el tamaño fijo */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10  justify-items-center">
             {features.map((feature, index) => (
               <FeatureCard

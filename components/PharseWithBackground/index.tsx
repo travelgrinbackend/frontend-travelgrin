@@ -24,7 +24,6 @@ export default function PharseWithBackground({ onlyOne = false }: Props) {
   return (
     <>
       <div className="relative w-full ">
-        {/* 1. Fondo SVG del mapa */}
         <div className="w-full rounded-[60px]">
           <Image
             src={
@@ -41,7 +40,6 @@ export default function PharseWithBackground({ onlyOne = false }: Props) {
           />
         </div>
 
-        {/* 3. Banda verde para el texto */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
           <div
             className={`rounded-[6px] md:rounded-[60px]     flex items-center justify-center  ${

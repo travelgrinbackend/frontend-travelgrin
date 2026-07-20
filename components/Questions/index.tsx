@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useTranslation } from "@/app/hooks/useTranslation";
 const FAQItem = ({ question, answer, isOpen, onToggle }) => (
   <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.01] group border border-gray-100">
-    {/*STYLOS CARD:  shadow-lg  hover:shadow-xl transition-all duration-300 hover:scale-[1.01] */}
     <button
       onClick={onToggle}
       className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-all duration-300"
@@ -81,7 +80,6 @@ export default function TravelgrinFAQ() {
   return (
     <div className=" bg-gray-50  md:py-16 px-4 pt-[2rem]">
       <div className="max-w-4xl mx-auto">
-        {/* Header matching the teal-purple gradient style */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-3 mb-6">
             <h1 style={{ color: "#273166" }} className="text-[22px] md:text-[25.76px] font-bold">
@@ -99,8 +97,6 @@ export default function TravelgrinFAQ() {
             className="w-24 h-1  mx-auto rounded-full"
           ></div>
         </div>
-
-        {/* FAQ Items with white cards like the design */}
         <div className="space-y-4 mb-16">
           {faqs.map((faq, index) => (
             <FAQItem
