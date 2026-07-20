@@ -12,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/api", "/panel-oferente", "/mi-plan"],
+        disallow: ["/tgn-panel-control", "/api", "/panel-oferente", "/mi-plan"],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,

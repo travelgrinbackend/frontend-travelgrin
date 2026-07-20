@@ -15,8 +15,6 @@ export const metadata: Metadata = {
   authors: [{ name: "TravelGrin" }],
   creator: "TravelGrin",
   publisher: "TravelGrin",
-  //
-  // Open Graph para redes sociales
   openGraph: {
     title: "TravelGrin - Viajar por oportunidades",
     description: "Conecta con el mundo por oportunidades y viaja con propósito",
