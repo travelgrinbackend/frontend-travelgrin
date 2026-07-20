@@ -33,8 +33,6 @@ export default function CardsCarousel() {
   const [isHovering, setIsHovering] = useState(false);
   const [shuffledCards, setShuffledCards] = useState([]);
   const isClient = useIsClient();
-
-  // Array de tarjetas/testimonios con claves de categoría
   const cards = useMemo(() => [
     {
       id: 1,
@@ -366,10 +364,8 @@ export default function CardsCarousel() {
     setShuffledCards(shuffleArray(cards));
   }, [cards]);
 
-  // //Auto-advance carousel (bucle) - pausar si hay interacción o hover
   useEffect(() => {
     const timer = setInterval(() => {
-      // No avanzar automáticamente si hay una tarjeta expandida o si está en hover
       if (expandedCard !== null || isHovering) return;
 
       setCurrentSlide((prev) => {
@@ -378,15 +374,13 @@ export default function CardsCarousel() {
         const increment =
           window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 3 : 1;
         const nextIndex = prev + increment;
-
-        // Si llegamos al final, volver al inicio (bucle)
         if (nextIndex >= shuffledCards.length) {
           return 0;
         }
 
         return nextIndex;
       });
-    }, 3000); // Cambia cada 3 segundos
+    }, 3000);
 
     return () => clearInterval(timer);
   }, [shuffledCards.length, expandedCard, isHovering]);
@@ -397,8 +391,6 @@ export default function CardsCarousel() {
       const increment =
         window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 3 : 1;
       const nextIndex = prev + increment;
-
-      // Si llegamos al final, volver al inicio (bucle)
       if (nextIndex >= shuffledCards.length) {
         return 0;
       }
@@ -414,9 +406,7 @@ export default function CardsCarousel() {
         window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 3 : 1;
       const prevIndex = prev - increment;
 
-      // Si vamos antes del inicio, ir al final
       if (prevIndex < 0) {
-        // Calcular la última posición válida
         const maxSlides = Math.ceil(shuffledCards.length / increment) - 1;
         return maxSlides * increment;
       }
@@ -436,25 +426,24 @@ export default function CardsCarousel() {
     return currentSlide === 0;
   };
 
-  // Función para calcular el número total de "páginas" de dots
   const getTotalDots = () => {
     if (typeof window === "undefined")
-      return Math.ceil(shuffledCards.length / 3); // fallback
+      return Math.ceil(shuffledCards.length / 3); 
     const increment =
       window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 3 : 1;
     return Math.ceil(shuffledCards.length / increment);
   };
 
-  // Función para calcular el dot activo actual
+
   const getCurrentDotIndex = () => {
-    if (typeof window === "undefined") return Math.floor(currentSlide / 3); // fallback
+    if (typeof window === "undefined") return Math.floor(currentSlide / 3); 
     const increment =
       window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 3 : 1;
     return Math.floor(currentSlide / increment);
   };
 
   const handleTouchStart = (e) => {
-    if (window.innerWidth >= 1024) return; // Solo en mobile y tablet
+    if (window.innerWidth >= 1024) return; 
     setIsDragging(true);
     setStartX(e.touches[0].clientX);
   };
@@ -470,21 +459,19 @@ export default function CardsCarousel() {
 
     const endX = e.changedTouches[0].clientX;
     const diff = startX - endX;
-    const threshold = 50; // Mínimo de 50px para hacer swipe
+    const threshold = 50;
 
     if (Math.abs(diff) > threshold) {
       if (diff > 0) {
-        // Swipe izquierda - ir al siguiente
         nextSlide();
       } else {
-        // Swipe derecha - ir al anterior
         prevSlide();
       }
     }
   };
 
   const handleMouseDown = (e) => {
-    if (window.innerWidth >= 1024) return; // Solo en mobile y tablet
+    if (window.innerWidth >= 1024) return;
     setIsDragging(true);
     setStartX(e.clientX);
   };
@@ -516,7 +503,6 @@ export default function CardsCarousel() {
 
     if (typeof window !== "undefined") {
       if (window.innerWidth >= 1024) {
-        // Desktop: siempre mostrar 3 completos + 1 parcial (si existe)
         for (let i = 0; i < 4; i++) {
           const index = currentSlide + i;
           if (index < shuffledCards.length) {
@@ -524,7 +510,6 @@ export default function CardsCarousel() {
           }
         }
       } else if (window.innerWidth >= 768) {
-        // Tablet: 3 completos + 1 parcial (si existe)
         for (let i = 0; i < 4; i++) {
           const index = currentSlide + i;
           if (index < shuffledCards.length) {
@@ -532,14 +517,12 @@ export default function CardsCarousel() {
           }
         }
       } else {
-        // Mobile: solo 1 completo
         const index = currentSlide;
         if (index < shuffledCards.length) {
           visible.push(shuffledCards[index]);
         }
       }
     } else {
-      // Fallback para SSR
       for (let i = 0; i < 4; i++) {
         const index = currentSlide + i;
         if (index < shuffledCards.length) {
@@ -552,7 +535,6 @@ export default function CardsCarousel() {
   };
 
   const handleCardClick = (cardId) => {
-    // Solo en mobile (menos de 1024px)
     if (typeof window !== "undefined" && window.innerWidth < 1024) {
       setExpandedCard(expandedCard === cardId ? null : cardId);
     }
@@ -564,7 +546,7 @@ export default function CardsCarousel() {
 
   return (
     <>
-      {/* Contenedor con fondo degradé */}
+
       <div
         className="relative w-full mx-auto px-4 py-8 mb-12 rounded-3xl mt-12 z-10"
         style={{
@@ -579,7 +561,7 @@ export default function CardsCarousel() {
           {t("muchos_ya_se")}
         </p>
 
-        {/* Container del carousel con padding interno */}
+
         <div
           className="relative overflow-hidden touch-pan-x px-6 py-4"
           onTouchStart={handleTouchStart}
@@ -603,7 +585,7 @@ export default function CardsCarousel() {
               isDragging ? "transition-none" : ""
             }`}
           >
-            {/* Mobile: 1 slide completo */}
+
             <div className="flex md:hidden w-full">
               {getVisibleCards().map((card, index) => (
                 <div
@@ -621,7 +603,6 @@ export default function CardsCarousel() {
               ))}
             </div>
 
-            {/* Tablet: 3.5 slides - Con scroll horizontal */}
             <div className="hidden md:flex lg:hidden w-full">
               {getVisibleCards().map((card, index) => {
                 const totalVisible = getVisibleCards().length;
@@ -647,22 +628,21 @@ export default function CardsCarousel() {
               })}
             </div>
 
-            {/* Desktop: 3 completos + 1 parcial */}
             <div className="hidden lg:flex w-full">
               {getVisibleCards().map((card, index) => (
                 <div
                   key={`${card.id}-${currentSlide}-${index}`}
                   className={`flex-shrink-0 px-3 ${
                     index < 3
-                      ? "w-[calc(33.333%-12px)]" // 3 tarjetas completas con más padding
-                      : "w-[calc(16.667%-12px)]" // 1 tarjeta parcial con más padding
+                      ? "w-[calc(33.333%-12px)]"
+                      : "w-[calc(16.667%-12px)]" 
                   }`}
                 >
                   <CardItem
                     card={card}
                     isPartial={index >= 3}
                     onCardClick={handleCardClick}
-                    isExpanded={false} // En desktop no se expande con click
+                    isExpanded={false}
                   />
                 </div>
               ))}
@@ -670,7 +650,6 @@ export default function CardsCarousel() {
           </div>
         </div>
 
-        {/* Flechas de navegación */}
         {!isAtStart() && (
           <button
             onClick={prevSlide}
@@ -691,7 +670,6 @@ export default function CardsCarousel() {
           </button>
         )}
 
-        {/* Dots indicadores */}
         <div className="flex justify-center mt-6 space-x-3">
           {Array.from({ length: getTotalDots() }).map((_, index) => (
             <div
@@ -720,7 +698,6 @@ export default function CardsCarousel() {
   );
 }
 
-// Componente para cada tarjeta de testimonio
 function CardItem({
   card,
   isPartial = false,
@@ -826,26 +803,17 @@ function CardItem({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Fondo con color según categoría */}
-      <div className="absolute inset-0 bg-white transition-transform duration-300 group-hover:scale-105">
-        {/* Overlay negro con 40% de opacidad */}
-        {/* Overlay gradient */}
-      </div>
 
-      {/* Contenido original - visible por defecto */}
+      <div className="absolute inset-0 bg-white transition-transform duration-300 group-hover:scale-105"></div>
       <div className="absolute inset-0 flex flex-col p-6 transition-opacity duration-300 z-10">
-        {/* Avatar con iniciales */}
-
         <h3 className="text-black font-bold text-[20px] lg:text-[20px] md:text-[14px] leading-tight drop-shadow-lg text-center mb-2">
           <span className="mr-2">{getCountryFlag(card.paisOrigen)}</span>
           {card.nombre}
         </h3>
-
         <div className="text-black text-[12px] flex items-center justify-center my-2">
           <Plane className="w-6 h-6 md:w-4 md:h-4 fill-current text-black" />
           <span className="font-medium ml-2">{card.paisDestino}</span>
         </div>
-
         <div className="text-black text-[12px] px-3 pb-1 rounded-full flex justify-center items-center">
           {getCategoryIcon(card.categoriaKey)}
           {t(card.categoriaKey)}
@@ -855,7 +823,6 @@ function CardItem({
           <Quote
             className="w-12 h-12 fill-current text-blue-600"
             style={{
-              // Forzar color y opacidad del icono en iOS
               color: "#2563eb",
               fill: "#2563eb",
               opacity: "1",
@@ -866,21 +833,17 @@ function CardItem({
           <p
             className="text-[17px] font-bold"
             style={{
-              // Forzar color de texto y opacidad en iOS
               color: "#000000 !important",
               WebkitTextFillColor: "#000000",
               opacity: "1",
               fontWeight: "bold",
-              // Prevenir problemas de transparencia
               backgroundColor: "transparent",
               mixBlendMode: "normal",
               WebkitMixBlendMode: "normal",
-              // Optimizaciones de rendering
               transform: "translateZ(0)",
               WebkitTransform: "translateZ(0)",
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
-              // Forzar anti-aliasing
               WebkitFontSmoothing: "antialiased",
               MozOsxFontSmoothing: "grayscale",
             }}

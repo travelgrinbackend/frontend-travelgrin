@@ -31,7 +31,6 @@ export default function CategoriesSelect({
 const {t} = useTranslation()
   const selectedOption = categories.find((category) => category.value === selectedCategory);
   const selectedLabel = selectedOption?.label ?? selectedCategory ?? "";
-  // Determinar si mostrar error
   const showError = isEmpty;
 
   const getCategoryIcon = (categoria) => {
@@ -116,7 +115,6 @@ const {t} = useTranslation()
           />
         </button>
 
-        {/* Label flotante con estado de error */}
         {required && (
           <label
             className={`absolute left-3 bottom-[2rem] transition-all duration-200 pointer-events-none ${
@@ -153,7 +151,6 @@ const {t} = useTranslation()
           </label>
         )}
 
-        {/* Mensaje de error */}
         {showError && (
           <div className="flex items-center gap-1 mt-2 text-red-600 text-sm px-1">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -168,7 +165,6 @@ const {t} = useTranslation()
         )}
       </div>
 
-      {/* Dropdown con animación */}
       {isDropdownOpen && (
         <div
           className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl z-20 overflow-hidden animate-in slide-in-from-top-2 duration-200"
@@ -178,7 +174,7 @@ const {t} = useTranslation()
             filter: "drop-shadow(0 6px 20px rgba(8, 217, 189, 0.15))",
           }}
         >
-          {/* Lista de categorías */}
+
           <div className="max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
             {categories.map((category, index) => (
               <button
@@ -218,8 +214,6 @@ const {t} = useTranslation()
               </button>
             ))}
           </div>
-
-          {/* Footer opcional */}
           {categories.length === 0 && (
             <div className="p-4 text-center text-gray-500 text-sm">
               No hay categorías disponibles
@@ -228,7 +222,6 @@ const {t} = useTranslation()
         </div>
       )}
 
-      {/* Backdrop para cerrar dropdown al hacer click fuera */}
       {isDropdownOpen && (
         <div
           className="fixed inset-0 z-10"

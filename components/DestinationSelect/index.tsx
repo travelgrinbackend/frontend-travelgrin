@@ -175,15 +175,9 @@ export default function DestinationSelect({
   }, [isDropdownOpen]);
 
     const hasValue = Boolean(destinationCountry);
-
-    // si te pasan h-[3rem] (como en SearchBar), lo tratamos como modo compacto
     const hasCustomButtonSizing = Boolean(buttonClass && buttonClass.trim().length > 0);
     const compactMode = hasCustomButtonSizing;
-
-    // ✅ Label arriba SOLO en modo NO compacto y SOLO si no hay valor
     const showTopLabel = Boolean(showLabel && !hasValue && !compactMode && !isInModal);
-
-    // ✅ placeholder interno: si hay label arriba, adentro NO mostramos nada (para no duplicar)
     const innerPlaceholder = showTopLabel ? "" : label;
 
   const DropdownPortal = () => {
@@ -308,7 +302,6 @@ export default function DestinationSelect({
   const buttonTitle = destinationCountry || innerPlaceholder || label;
 
   return (
-    // ✅ w-full para que el rectángulo ocupe TODO el ancho del wrapper (y quede igual al de categoría)
     <div className={`relative w-full ${customClass}`}>
       <MapPin
         className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500"
@@ -330,7 +323,7 @@ export default function DestinationSelect({
             "0 8px 32px -12px rgba(8, 217, 189, 0.3), 0 4px 16px -6px rgba(4, 181, 189, 0.25), 0 2px 8px -3px rgba(0, 154, 188, 0.2)",
         }}
       >
-        {/* ✅ SOLO aparece cuando NO hay país seleccionado */}
+
         {showTopLabel ? (
           <span className={`absolute left-5 top-3 text-xs text-gray-500 transition-all ${labelStyle}`}>
             {label}
@@ -346,8 +339,6 @@ export default function DestinationSelect({
               destinationCountry ? "text-gray-700" : "text-gray-500 text-sm"
             }`}
           >
-            {/* ✅ Cuando no hay país: muestra label como placeholder
-                ✅ Cuando hay país: muestra el país (y NO muestra label arriba) */}
             {destinationCountry ? destinationCountry : innerPlaceholder}
           </span>
         </div>

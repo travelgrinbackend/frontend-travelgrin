@@ -22,7 +22,7 @@ export default function MobileFiltersDrawer({ title = "Filtros", children }: Pro
 
   return (
     <>
-      {/* ✅ Botón flotante SOLO móvil */}
+
       <button
         className="md:hidden fixed bottom-5 right-5 z-[9999] w-14 h-14 rounded-full bg-teal-600 text-white shadow-xl flex items-center justify-center active:scale-95 transition"
         onClick={() => setOpen(true)}
@@ -31,7 +31,6 @@ export default function MobileFiltersDrawer({ title = "Filtros", children }: Pro
         <SlidersHorizontal className="w-6 h-6" />
       </button>
 
-      {/* Overlay */}
       <div
         className={`md:hidden fixed inset-0 z-[9998] bg-black/40 transition-opacity ${
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -39,13 +38,12 @@ export default function MobileFiltersDrawer({ title = "Filtros", children }: Pro
         onClick={() => setOpen(false)}
       />
 
-      {/* Drawer (MISMO sidebar, sólo cambia posición en móvil) */}
       <aside
         className={`fixed md:static top-0 left-0 z-[9999] h-full md:h-auto w-[86%] max-w-[360px] md:w-auto bg-white md:bg-transparent shadow-2xl md:shadow-none transition-transform md:transition-none ${
           open ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
-        {/* Header móvil */}
+
         <div className="md:hidden flex items-center justify-between px-4 py-4 border-b">
           <span className="font-semibold text-gray-900">{title}</span>
           <button

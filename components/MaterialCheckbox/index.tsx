@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-// Checkbox rounded simple Material Design
 const RoundedCheckbox = ({ 
   id, 
   label, 
@@ -78,7 +77,6 @@ const RoundedCheckbox = ({
               : 'none'
           }}
         >
-          {/* Efecto de onda al hacer clic */}
           <div 
             className={`absolute inset-0 rounded-full transition-all duration-300 ${
               checked && !disabled 
@@ -87,7 +85,6 @@ const RoundedCheckbox = ({
             }`}
           />
           
-          {/* Checkmark animado */}
           <svg
             className={`${iconSizes[size]} text-white transition-all duration-300 ease-out transform ${
               checked 
@@ -110,8 +107,7 @@ const RoundedCheckbox = ({
               }}
             />
           </svg>
-          
-          {/* Brillo interno */}
+ 
           {checked && !disabled && (
             <div 
               className="absolute inset-0 rounded-full"

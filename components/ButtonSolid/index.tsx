@@ -9,8 +9,6 @@ type Props = {
   classStyle?: string;
   hexButton?: string;
   categorySelected?: string;
-
-  // ✅ antes era string, ahora puede ser string u objeto país (restcountries)
   destinationCountry?: any;
 
   disabled?: boolean;
@@ -53,7 +51,6 @@ export default function ButtonSolid({
       <button
         disabled={disabled}
         onClick={() => {
-          // ✅ si se usa para búsqueda, NO abre modales
           if (hasSubmit) {
             onSubmit?.();
             return;
@@ -81,7 +78,7 @@ export default function ButtonSolid({
         }}
         className={` cursor-pointer ${isDesktopHeader ? "px-4" : "px-6 py-2"} text-white font-medium rounded-lg transition-all duration-200 relative overflow-hidden group ${classStyle}`}
       >
-        {/* Star Border Effect - siempre visible */}
+
         <div className="absolute inset-0 rounded-lg">
           <div
             className="absolute inset-0 rounded-lg"

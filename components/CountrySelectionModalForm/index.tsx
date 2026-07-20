@@ -57,7 +57,6 @@ export default function CountrySelectionModalForm({
     fetchCountries();
   }, []);
 
-  // Sincronizar el país interno cuando cambia selectedCountry
   useEffect(() => {
     if (!selectedCountry) {
       setInternalCountry(null);

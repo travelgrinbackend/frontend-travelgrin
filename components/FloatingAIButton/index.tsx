@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 interface FloatingAIButtonProps {
   onClick: () => void;
-  isInFooter?: boolean; // Nueva prop para saber si está en el footer
-  is425w: boolean; // Nueva prop para saber si el ancho es 425px o menos
+  isInFooter?: boolean;
+  is425w: boolean;
 }
 
 export default function FloatingAIButton({
@@ -21,7 +21,6 @@ export default function FloatingAIButton({
           : "fixed bottom-6 right-6 z-[9999]"
       }
       style={{
-        // Propiedades específicas para iOS
         transform: isInFooter
           ? "translateY(-50%) translateZ(0)"
           : "translateZ(0)",
@@ -51,11 +50,8 @@ export default function FloatingAIButton({
             "linear-gradient(90deg, #08D9BD 0%, #04B5BD 50%, #009ABC 100%)",
         }}
       >
-        {/* Icono de IA */}
         <div className="relative">
           <span>🤖</span>
-
-          {/* Indicador de "online" */}
           <div
             className={`absolute -top-1 -right-1 ${
               isInFooter ? "w-3 h-3" : "w-4 h-4"
@@ -63,10 +59,8 @@ export default function FloatingAIButton({
           ></div>
         </div>
 
-        {/* Efecto de ondas */}
         <div className="absolute inset-0 rounded-full animate-ping bg-blue-400 opacity-20"></div>
 
-        {/* Tooltip - solo en modo flotante */}
         {!isInFooter && (
           <div
             className={`
@@ -80,13 +74,10 @@ export default function FloatingAIButton({
           `}
           >
             Asistente de IA
-            {/* Flecha del tooltip */}
             <div className="absolute top-1/2 left-full transform -translate-y-1/2 border-l-4 border-l-gray-800 border-y-4 border-y-transparent"></div>
           </div>
         )}
       </button>
-
-      {/* Texto alternativo para mobile - solo en modo flotante */}
       {!isInFooter && (
         <div
           className={`

@@ -101,12 +101,10 @@ export default function ModalDemandante({
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileResetKey, setTurnstileResetKey] = useState(0);
 
-  // Hook para mounted state
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Hook para inicializar el país desde selectedCountry
   useEffect(() => {
     if (selectedCountry) {
       setCountry(selectedCountry);
@@ -130,21 +128,17 @@ export default function ModalDemandante({
     };
   }, []);
 
-  // Hook para bloquear el scroll del body y manejar iOS específico
   useEffect(() => {
-    // Guardar el valor original del overflow
     const originalOverflow = document.body.style.overflow;
     const originalPosition = document.body.style.position;
     const originalTop = document.body.style.top;
     const scrollY = window.scrollY;
 
-    // Bloquear el scroll específico para iOS
     document.body.style.overflow = "hidden";
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = "100%";
 
-    // Cleanup: restaurar el estado original cuando el modal se desmonte
     return () => {
       document.body.style.overflow = originalOverflow;
       document.body.style.position = originalPosition;
@@ -252,7 +246,6 @@ export default function ModalDemandante({
     emailError.length > 0 ||
     !turnstileToken;
 
-  // Función para manejar el cierre del modal
   const handleClose = (e?: React.MouseEvent) => {
     if (e) {
       e.stopPropagation();
@@ -262,7 +255,6 @@ export default function ModalDemandante({
 
   const modalContent = (
     <>
-      {/* Portal-style backdrop */}
       <div 
         className="fixed inset-0 bg-black/60"
         style={{ 
@@ -277,7 +269,6 @@ export default function ModalDemandante({
         onClick={handleClose}
       />
 
-      {/* Modal container */}
       <div 
         className="fixed inset-0 flex items-start justify-center p-2 pt-2 md:p-4 md:pt-24"
         style={{
@@ -291,7 +282,7 @@ export default function ModalDemandante({
           touchAction: 'auto'
         }}
       >
-        {/* Contenedor del modal con scroll */}
+
         <div 
           className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col transition-all duration-300 ease-out transform"
           style={{
@@ -302,7 +293,7 @@ export default function ModalDemandante({
           }}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header fijo */}
+
           <div className="flex-shrink-0 p-6 pb-4 border-b border-gray-100">
             <div className="flex flex-row items-start justify-between">
               <Image
@@ -333,7 +324,6 @@ export default function ModalDemandante({
             </div>
           </div>
 
-          {/* Contenido con scroll */}
           <div
             style={{ backgroundColor: "#EEEEEE" }}
             className="flex-1 overflow-y-auto p-6 space-y-6"
@@ -347,9 +337,8 @@ export default function ModalDemandante({
               </h1>
             </div>
             
-            {/* Selección de país y categoría */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* REQUERIDO PAIS DE PASAPORTE */}
+
               <div 
                 style={{ 
                   position: 'relative',
@@ -379,7 +368,6 @@ export default function ModalDemandante({
               </div>
             </div>
 
-            {/* Selección de destino */}
             <div 
               style={{ 
                 position: 'relative',
@@ -398,7 +386,6 @@ export default function ModalDemandante({
               />
             </div>
 
-            {/* Textareas */}
             <div className="space-y-4">
               <div>
                 <MaterialTextarea
@@ -423,9 +410,7 @@ export default function ModalDemandante({
               </div>
             </div>
 
-            {/* Input adicional */}
             <div>
-              {/* REQUERIDO EMAIL */}
               <MaterialInputs
                 isEmpty={isEmptyEmail}
                 required
@@ -467,7 +452,6 @@ export default function ModalDemandante({
             </div>
           </div>
 
-          {/* Footer fijo con botones */}
           <div className="flex-shrink-0 p-6 pt-4 border-t border-gray-100 bg-gray-50 rounded-b-2xl">
             <div className="flex gap-3 justify-end">
               <ButtonSolid
